@@ -1,6 +1,6 @@
 # Important Note
 
-This Stuff works for Chitu V6- Chitu V9 Boards with STM32F103
+This Stuff works for Chitu V6_191017 E2 Board with STM32F103
 
 
 ## This note must be executed before the first test. Otherwise the device may be damaged.
