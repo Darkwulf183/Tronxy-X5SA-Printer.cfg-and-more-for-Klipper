@@ -1,0 +1,11 @@
+[mcu io]
+serial: /dev/serial/by-id/usb-Arduino__www.arduino.cc__123456if00
+
+[adxl345]
+cs_pin: io:PB2
+
+
+[resonance_tester]
+accel_chip: adxl345
+probe_points:
+    165,165,50 # an example
