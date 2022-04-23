@@ -1,0 +1,66 @@
+
+WICHTIG !!!
+1.Die ... sind durch den Laufwerksbuchstaben zu ersetzen
+2. Alle Arbeiten an diesen Dateien geschen auf eigene Gefahr. Ich installiere niemandem die SD Karte neu und stelle niemandem die Conf Ordner wieder her !!!
+3. Sichert den Ordner Klipper_Config mit WinSCP oder einem ähnlichen Programm womit ihr auf den Pi zugreifen könnt.
+
+Viel Spaß :-)
+
+
+Als Erstes lassen Wir uns alle Geräte auflisten.
+sudo blkid -o list -w /dev/null
+
+Hier sollte nun der USB-Stick als not Mounted erscheinen. Wer das trotzdem nochmal überprüfen möchte, möge bitte den Stick ziehen und den Befehl nochmal ausführen.
+Dann kann man sehen, welcher Buchstabe und Point fehlt.
+Danach bitte nochmal den Befehl mit gestecktem Stick verwenden, um dann den richtigen Laufwerksbuchstaben zu haben für die Formatierung.
+Bei der Formatierung bitte den gesamten Stick formatieren nicht eine einzelne Partition. Beispiel: sda ist der Stick selbst sda1 ist die erste Partition des Sticks.
+
+USB-Stick mit ext4 Formatieren.
+Partitionen sind hier nicht erforderlich, da eh der Stick nur für die Timelapse als Gesamtlaufwerk verwendet werden soll!
+sudo mkfs.ext4 /dev/sd...
+
+Dannach Mountpoint definieren
+sudo mkdir /media/timeusb
+
+Gerätebezeichnung und UUID (Gerätepfad) herausfinden
+sudo blkid -o list -w /dev/null
+UUID rauskopieren. Beispiel: 70e56f5d-76fe-456b-b4f1-1354c3f0201a
+
+Wer mag testweise manuell Mounten
+sudo mount -t ext4 -o defaults /dev/sd... /media/timeusb
+
+Automatisches Mounten eines USB-Sticks oder einer USB-Festplatte (Wichtig, in dieser Datei dürfen keine Fehler passieren. Der Pi startet sonst nicht mehr !!!)
+sudo nano -w /etc/fstab
+
+Mountpoint für die FSTAB Datei (So sollte der Befehl dann aussehen, mit der UUID eures Gerätes)
+UUID=70e56f5d-76fe-456b-b4f1-1354c3f0201a /media/timeusb/ ext4 defaults 0 0
+
+Befehl mit automatischem Mountpoint Sprung wenn der Stick fehlt.(Standart Option bei mir.)
+UUID=70e56f5d-76fe-456b-b4f1-1354c3f0201a /media/timeusb/ ext4 nofail,x-systemd.device-timeout=1ms 0 0 
+
+Nach dem Reinkopieren dieser Zeile mit der passenden UUID die Datei speichern und schließen.
+
+Nach erfolgreichem Speichern und schliessen solltet ihr den Mount testen, mit dem Befehl
+sudo mount -a
+
+Hier darf jetzt keine Fehlermeldung erscheinen, dass der Punkt nicht mountbar war wegen eines Fehlers oder einer Meldung, dass die Ordnernamen nicht stimmen.
+
+Ab hier gilt es nun die Ordnerstruktur zu erstellen auf dem Pi
+
+Als Erstes erstellen wir die zwei Ordner um Ordnung zu bekommen am besten genauso wie sie ursprünglich benannt waren.
+
+sudo mkdir /media/timeusb/tmp
+sudo mkdir /media/timeusb/tmp/timelapse
+sudo mkdir /media/timeusb/timelapse
+
+Danach müssen wir noch die Zugriffsrechte auf offen stellen, damit diese zwei Ordner erreicht werden können.
+Manchmal geht es auch mit 755, aber Ich konnte es nicht bei jedem Versuch bestätigen.
+
+sudo chmod -R 777 /media/timeusb/tmp/timelapse
+sudo chmod -R 777 /media/timeusb/timelapse
+
+Als letzten Schritt müssen wir nun noch manuell im Moonraker.conf Timelapse Abschnitt die Ordnerstruktur Vergabe anpassen.
+output_path: /media/timeusb/timelapse/
+frame_path: /media/timeusb/tmp/timelapse/
+
+Happy Printing Time :-)
