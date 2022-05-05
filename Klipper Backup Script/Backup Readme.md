@@ -39,6 +39,15 @@ sleep 1s ; cp -rpv /home/pi/klipper_config/ /home/pi/shares/klipper/Backup/klipp
 
 ####################################################################################
 
+Bitte überprüft den Pfad bei timeusb. Es ist möglich das Ich aus versehen usbmedium eingetragen habe. Das muss ausgetauscht werden mit timeusb.
+
+Für den USB-Stick benötigen wir noch einen Zwischenschritt.
+
+$ sudo mkdir /media/timeusb/Backup
+
+Dieses ist wichtig um sicher zu stellen das auch wirklich der Ordner verwendet werden kann.
+
+
 Als Nächstes müsst Ihr Euch überlegen, ob Ihr auf den USB-Stick von der Kamera sichern wollt oder auf Euer NAS.
 Dementsprechend müsst Ihr dann don 2 Zeilen die Rauten entfernen und bei den anderen 2 die Rauten einfügen.
 
