@@ -38,6 +38,7 @@ rm -rv /home/pi/shares/klipper/Backup/klipper_config 1>> /home/pi/klipper_config
 sleep 1s ; cp -rpv /home/pi/klipper_config/ /home/pi/shares/klipper/Backup/klipper_config 1>> /home/pi/klipper_config/Backuplogs/log_ready.log 2>> /home/pi/klipper_config/Backuplogs/log_fail.log  
 
 ####################################################################################
+
 Bitte überprüft den Pfad bei timeusb. Es ist möglich das Ich aus versehen usbmedium eingetragen habe. Das muss ausgetauscht werden mit timeusb.
 
 Für den USB-Stick benötigen wir noch einen Zwischenschritt.
