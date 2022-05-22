@@ -44,6 +44,7 @@ Bitte überprüft den Pfad bei timeusb. Es ist möglich das Ich aus versehen usb
 Für den USB-Stick benötigen wir noch einen Zwischenschritt.
 ```
 $ sudo mkdir /media/timeusb/Backup
+$ sudo chmod -R 777 /media/timeusb/Backup
 ```
 Dieses ist wichtig um sicher zu stellen das auch wirklich der Ordner verwendet werden kann.
 
