@@ -25,7 +25,7 @@ Als Nächstes gehen wir wieder über die Konsole weiter vor.
 
 Ihr öffnet im Verzeichnis /home/pi die Backup.sh mit dem Befehl:
 
-$sudo nano Backup.sh
+$ nano Backup.sh
 
 Dort drinnen findet Ihr diese 4 Zeilen:
 
@@ -75,6 +75,7 @@ Weiter gehts dann in der Printer.cfg bzw. In meinem Image schon vorhanden in der
 dort fügt Ihr (in meinem Image überprüft Ihr ob) dieses Macro ein.
 
 ####################################
+```
 
 [gcode_shell_command BACKUP_START]
 command: sh /home/pi/Backup.sh
@@ -85,5 +86,6 @@ verbose: True
 gcode: 
       RUN_SHELL_COMMAND CMD=BACKUP_START
 
+```
 ###################################
 
