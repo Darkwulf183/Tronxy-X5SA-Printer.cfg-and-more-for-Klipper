@@ -24,4 +24,4 @@ Pin-Priority: 1001
 12. This setup does not prevent the rest of your OS to have regular package updates on bullseye. 
     You can still use ```apt upgrade``` to update all other packages, but only the four AVR packages will be kept on the buster branch.
 
-Note: This workaround is not a permanent solution, and it is recommended to upgrade to a more recent version of AVR toolchain when possible.
+Note: This workaround is not a permanent solution, and it is recommended to upgrade to a more recent version of AVR toolchain when possible...
